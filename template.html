@@ -9,20 +9,29 @@
          <style type="text/css" id="hs-inline-css">
         /*<![CDATA[*/
             /* everything in this node will be inlined */
-    		
+            
 
 
-			/*
+        	/*
 #############################################################
 
 Customize Variables
 
 #############################################################
 			*/
-			{% set background_color  = "#fff" %}
+			{% set background_color  = "#ebebeb" %}
 			{% set email_main_body_box_shadow_css  = "none" %}
+            {% set email_body_border_css  = "border:none;" %}
+            {% set link_color  = "#01a8df" %}
+            {% set email_body_padding  = "0" %}
+            {% set text_body_padding  = "15px 15px 15px 15px" %}
+            {% set spacer_height  = "5px" %}
+            {% set email_body_padding_num  = "0" %}
+             {% set primary_font_size  = "13px" %}
+			{% set primary_font_lheight  = "1.5" %}
+			{% set primary_font_color  = "#6d6d70" %}
 
-			
+
 {#   
 The variables below are pulled from the HubSpot content settings.
 Copy and paste them above the comment block and edit if needed.
@@ -31,10 +40,9 @@ If you don't need them place them in this comment block.
     {% set body_color  = "" %}
     {% set email_body_width  = "" %}
     {% set primary_font  = "" %}
-    {% set primary_font_size  = "" %}
-    {% set primary_font_color  = "" %}
+   
     {% set secondary_font_color  = "" %}
-    {% set email_body_padding  = "" %}
+
     {% set email_body_border_css  = " " %}
 
  #}
@@ -107,7 +115,6 @@ If you don't need them place them in this comment block.
                 line-height:120%;
                 text-align:right;
                 border-collapse: separate !important;
-                padding-right: {{email_body_padding}}px;
             }
             
             #headerTable a:link, #headerTable a:visited, /* Yahoo! Mail Override */ #headerTable a .yshortcuts /* Yahoo! Mail Override */{
@@ -124,7 +131,7 @@ If you don't need them place them in this comment block.
              
             #contentTableOuter {
                 border-collapse: separate !important;
-                
+                {{email_body_border_css}}
                 background-color: {{ body_color }};
                 {% if email_main_body_box_shadow_css and email_main_body_box_shadow_css != '' %}
                 box-shadow: {{ email_main_body_box_shadow_css }};
@@ -142,7 +149,7 @@ If you don't need them place them in this comment block.
                 color:{{ primary_font_color }};
                 font-family:{{ primary_font }};
                 font-size: {{primary_font_size }};
-                line-height:150%;
+                line-height:{{primary_font_lheight }};
                 text-align:left;
             }
             
@@ -247,6 +254,62 @@ If you don't need them place them in this comment block.
 
 
 
+
+/* 
+#######################################################################################
+#######################################################################################
+#######################################################################################
+#######################################################################################
+Custom Styles
+
+
+ */
+
+
+#footerTable td {padding-top: 10px;}
+#masthead h3 {font-weight: normal;margin-bottom: 0px;}
+.no-underline a,
+h1 a,
+h2 a,
+h3 a,
+h4 a
+ {text-decoration: none;}
+.bodyContent p {margin-bottom: 4px;margin-top:0;}
+
+.breather  p {margin-bottom:1em;margin-top:1em;}
+
+hr 	{
+border: 0;
+height: 1px;
+background: #d5d5d5;
+
+}
+
+.bodyContent a {
+color: {{ link_color }};
+}
+
+.text-padding td {
+    padding: {{ text_body_padding }};
+
+}
+
+.text-center {text-align: center;}
+
+.spacer {
+    line-height: 10px;
+}
+
+.blue-bar h2,  .blue-bar h3    {
+	text-align: center;
+}
+.text-white  {
+	color: #ffffff;
+}
+
+.blue-bar h2 {font-size:32px;}
+
+.blue-bar h3  {font-weight: normal;font-size:24px;}
 
 /* 
 #############################
@@ -495,7 +558,7 @@ having to create a template variation.
 
 
             <tr>
-<td valign="top" colspan=12 width="100.0%" class=" column" style="width:100.0%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
+<td valign="top" colspan=12 width="100.0%" class=" column" style="width:100.0%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
 
 
 
@@ -511,12 +574,12 @@ having to create a template variation.
 <td align="center" valign="top" class="bodyContent" width="100%" colspan="12">
 <table cellpadding="0" cellspacing="0" border="0" width="100%" class="templateColumnWrapper">
             <tr>
-<td valign="top" colspan=12 width="100.0%" class=" column" style="width:100.0%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
+<td    valign="top" colspan=12 width="100.0%" class="text-padding column" style="width:100.0%; text-align: left; padding:10px 20px; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
 
 <div class="widget-span widget-type-email_view_as_web_page " style="" data-widget-type="email_view_as_web_page">
 {% if content.create_page %}
-<div style="padding-top: 15px; font-family: Geneva, Verdana, Arial, Helvetica, sans-serif; text-align: right; font-size: 9px; line-height: 1.34em; color: {{ secondary_font_color }}">
-    Not rendering correctly? View this email as a web page <a class="hubspot-mergetag" style="color: {{ secondary_font_color }}; text-decoration: underline; white-space: nowrap" data-viewaswebpage="true" href="{{ view_as_page_url }}">here</a>.
+<div style=" font-family: Geneva, Verdana, Arial, Helvetica, sans-serif; text-align: right; font-size: 9px; line-height: 1.34em; color: {{ secondary_font_color }}">
+    <a class="hubspot-mergetag" style="color: {{ secondary_font_color }}; text-decoration: underline; white-space: nowrap" data-viewaswebpage="true" href="{{ view_as_page_url }}">View in Browser</a>
 </div>
 
 {% endif %}
@@ -537,7 +600,7 @@ having to create a template variation.
                                 <!-- This separates the preheader which usually contains the "open in browser, etc" content
                                 from the actual body of the email. Can alternatively contain the footer too, but I choose not
                                 to so that it stays outside of the border. -->
-                                <table border="0" cellpadding="0" cellspacing="0" width="100%" id="contentTableOuter" style="{{email_body_border_css}}">
+                                <table border="0" cellpadding="0" cellspacing="0" width="100%" id="contentTableOuter">
                                     <tr>
                                         <td align="center" valign="top">
                                             <table border="0" cellpadding="0" cellspacing="0" id="contentTableInner">
@@ -553,53 +616,62 @@ having to create a template variation.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- 
 #############################
 
-logo
+col-2- 30/60
+masthead
 
 #############################
  -->
 <tr>
-<td valign="top" colspan=12 width="100.0%" class=" column" style="width:100.0%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
-<div class="widget-span widget-type-logo " style="" data-widget-type="logo">
-<div class="layout-widget-wrapper">
-{% logo "logo_image" overrideable=true, suppress_company_name=true, label='Logo'%}
-</div><!--end layout-widget-wrapper -->
-</div><!--end widget-span -->
-   </td>
-           </tr>
-    </table>
-   </td>
-</tr>
-<!-- 
-#############################
-end logo
- -->
-
-
-
-
-
-
-<!-- 
-#############################
-
-whitespace
-
-#############################
- -->
-<tr>
-<td align="center" valign="top" class="bodyContent" width="100%" colspan="12">
+<td align="center" valign="top" class="bodyContent" width="100%" colspan="12" id="masthead">
 <table cellpadding="0" cellspacing="0" border="0" width="100%" class="templateColumnWrapper">
             <tr>
-<td valign="top" colspan=12 width="100.0%" class=" column" style="width:100.0%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
+<td valign="middle" colspan=4 width="25%" class=" column" style="width:25%%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
 
-<div class="widget-span widget-type-space " style="" data-widget-type="space">
-<div class="layout-widget-wrapper">
-{% space "horizontal-spacer" overrideable=true, ending_html='', starting_html='', label='Horizontal Spacer'%}
-</div><!--end layout-widget-wrapper -->
-</div><!--end widget-span -->
+ 
+<table cellspacing="0" cellpadding="" width="100%" class="text-padding" style=""><tr><td valign="middle">
+    
+
+{% linked_image "masthead_logo", label='Masthead Logo' src='https://cdn2.hubspot.net/hubfs/47251/altair-logo.png', width='140'  %}
+
+</td></tr></table>
+
+
+
+
+
+   </td>
+<td valign="middle" colspan=8 width="75%" class=" column" style="width:75%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
+
+
+<table cellspacing="0" cellpadding="" width="100%" class="text-padding" style="border-left:1px solid #cccccc;"><tr><td valign="middle">
+    
+
+{% widget_block rich_text "right_column" overrideable=True, label='Newsletter Title'  %}
+    {% widget_attribute "html" %}
+            <h2>Electromagnetic News</h2>
+            <h3>{{ content.updated|datetimeformat('%B %Y') }} </h3>
+    {% end_widget_attribute %}
+{% end_widget_block %}
+</td></tr></table>
+
+
+
    </td>
            </tr>
     </table>
@@ -607,8 +679,18 @@ whitespace
 </tr>
 <!-- 
 #############################
-end whitespace
+grid end
  -->
+
+
+<!-- 
+#############################
+col-100% - spacer
+ -->
+<tr><td align="center" valign="top" class="spacer" width="100%" height="{{ spacer_height }}" colspan="12"  bgcolor="{{ background_color }}">&nbsp;</td></tr>
+
+
+
 
 
 
@@ -618,6 +700,101 @@ end whitespace
 #############################
 
 col-100%
+intro
+
+#############################
+ -->
+
+
+		
+
+
+
+<tr>
+<td align="center" valign="top" class="bodyContent" width="100%" colspan="12">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="templateColumnWrapper"  >
+            <tr>
+<td valign="top" colspan=12 width="100.0%" class=" column" style="width:100.0%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
+
+{% linked_image "intro_image", label='Intro Image' src='//dummyimage.com/600x190/000/fff', width='600' %}
+
+   </td>
+           </tr>
+
+<tr>
+<td valign="top" colspan=12 width="100.0%" class="column" style="width:100.0%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; "   bgcolor="{{ link_color }}">
+
+<table cellspacing="0" cellpadding="" width="100%" class="blue-bar text-padding no-underline"><tr><td valign="top">
+    
+
+
+{% widget_block rich_text "into_bluebar" overrideable=True, label='Intro Blue Bar'  %}
+    {% widget_attribute "html" %}
+            <h2 class="text-white">Heading</h2>
+            <h3 class="text-white">Subheading</h3>
+    {% end_widget_attribute %}
+{% end_widget_block %}
+
+</td></tr></table>
+
+
+   </td>
+           </tr>
+            <tr>
+<td valign="top" colspan=12 width="100.0%" class=" column" style="width:100.0%; text-align: center; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
+
+<table cellspacing="0" cellpadding="" width="100%" class="text-padding text-center"><tr><td valign="top"  id="intro" class="breather">
+    
+
+
+{% widget_block rich_text "intro_body" overrideable=True, label='Intro Body Copy'  %}
+    {% widget_attribute "html" %}
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi nostrum, doloribus deleniti non amet. Blanditiis iure, nobis cum corporis, optio eos rerum itaque voluptatum necessitatibus, error a illum nostrum temporibus.</p>
+
+<p>
+<a href="">Link to somewhere</a>
+</p>
+
+    {% end_widget_attribute %}
+{% end_widget_block %}
+
+</td></tr></table>
+
+
+   </td>
+           </tr>
+    </table>
+   </td>
+</tr>
+
+
+
+
+
+<!-- 
+#############################
+col-100% - spacer
+ -->
+<tr><td align="center" valign="top" class="spacer" width="100%" height="{{ spacer_height }}" colspan="12"  bgcolor="{{ background_color }}">&nbsp;</td></tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+#############################
+
+col-2- 40/60
+feko
 
 #############################
  -->
@@ -625,19 +802,321 @@ col-100%
 <td align="center" valign="top" class="bodyContent" width="100%" colspan="12">
 <table cellpadding="0" cellspacing="0" border="0" width="100%" class="templateColumnWrapper">
             <tr>
-<td valign="top" colspan=12 width="100.0%" class=" column" style="width:100.0%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
+<td valign="top"   width="45%" class=" column" style="width:45%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
 
-<div class="widget-span widget-type-rich_text " style="" data-widget-type="rich_text">
-<div class="layout-widget-wrapper">
-{% rich_text "rich_text_col_100" %}
-</div><!--end layout-widget-wrapper -->
-</div><!--end widget-span -->
+{% linked_image "article_image_1", label='Article Image 1' src='//dummyimage.com/265x150/000/fff', width='265' %}
+
+
+   </td>
+<td valign="top"   width="55%" class=" column" style="width:55%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
+
+<table cellspacing="0" cellpadding="" width="100%" class="text-padding"><tr><td valign="top">
+    
+
+{% widget_block rich_text "article_text_1" overrideable=True, label='Article Text 1'  %}
+    {% widget_attribute "html" %}
+            <h2><a href="#">An Engaging Title Not Too Long</a></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam libero adipisci placeat velit ab harum magnam.</p>
+    {% end_widget_attribute %}
+{% end_widget_block %}
+
+</td></tr></table>
+
+
+   </td>
+           </tr>
+           <!-- 
+#############################
+col-100% - spacer
+ -->
+<tr><td align="center" valign="top" class="spacer" width="100%" height="{{ spacer_height }}" colspan="12"  bgcolor="{{ background_color }}">&nbsp;</td></tr>
+
+
+            <tr>
+<td valign="top"   width="45%" class=" column" style="width:45%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
+
+{% linked_image "article_image_2", label='Article Image 2' src='//dummyimage.com/265x150/000/fff', width='265' %}
+   </td>
+<td valign="top"   width="55%" class=" column" style="width:55%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
+
+
+<table cellspacing="0" cellpadding="" width="100%" class="text-padding"><tr><td valign="top">
+    
+
+{% widget_block rich_text "article_text_2" overrideable=True, label='Article Text 2'  %}
+    {% widget_attribute "html" %}
+            <h2><a href="#">An Engaging Title Not Too Long</a></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam libero adipisci placeat velit ab harum magnam.</p>
+    {% end_widget_attribute %}
+{% end_widget_block %}
+
+</td></tr></table>
+
+
+   </td>
+           </tr>          
+    </table>
+   </td>
+</tr>
+<!-- 
+#############################
+grid end
+ -->
+
+
+
+
+
+<!-- 
+#############################
+col-100% - spacer
+ -->
+<tr><td align="center" valign="top" class="spacer" width="100%" height="{{ spacer_height }}" colspan="12"  bgcolor="{{ background_color }}">&nbsp;</td></tr>
+
+
+
+
+
+
+
+<!-- 
+#############################
+
+col-100%
+breather
+
+#############################
+ -->
+<tr>
+<td align="center" valign="top" class="bodyContent" width="100%" colspan="12">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="templateColumnWrapper">
+            <tr>
+<td valign="top" colspan=12 width="100.0%" class=" column" style="width:100.0%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
+
+{% linked_image "article_image_3", label='Article Image 3'  src='//dummyimage.com/600x190/000/fff', width='600' %}
+
+
+
+
+   </td>
+           </tr>
+
+
+
+                       <tr>
+<td valign="top" colspan=12 width="100.0%" class=" column" style="width:100.0%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
+
+<table cellspacing="0" cellpadding="" width="100%" class="text-padding"><tr><td valign="top" class="breather">
+    
+
+{% widget_block rich_text "article_text_3" overrideable=True, label='Article Text 3'  %}
+    {% widget_attribute "html" %}
+            <h2><a href="#">An Engaging Title Not Too Long</a></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam libero adipisci placeat velit ab harum magnam.</p>
+    {% end_widget_attribute %}
+{% end_widget_block %}
+
+</td></tr></table>
+
+
+
    </td>
            </tr>
     </table>
    </td>
 </tr>
 
+
+
+
+
+<!-- 
+#############################
+col-100% - spacer
+ -->
+<tr><td align="center" valign="top" class="spacer" width="100%" height="{{ spacer_height }}" colspan="12"  bgcolor="{{ background_color }}">&nbsp;</td></tr>
+
+
+
+
+
+
+
+
+
+<!-- 
+#############################
+
+col-2- 40/60
+feko
+
+#############################
+ -->
+<tr>
+<td align="center" valign="top" class="bodyContent" width="100%" colspan="12">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="templateColumnWrapper">
+            <tr>
+<td valign="top"   width="45%" class=" column" style="width:45%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
+
+{% linked_image "article_image_4", label='Article Image 4' src='//dummyimage.com/265x150/000/fff', width='265' %}
+
+
+   </td>
+<td valign="top"   width="55%" class=" column" style="width:55%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
+
+<table cellspacing="0" cellpadding="" width="100%" class="text-padding"><tr><td valign="top">
+    
+
+{% widget_block rich_text "article_text_4" overrideable=True, label='Article Text 4'  %}
+    {% widget_attribute "html" %}
+            <h2><a href="#">An Engaging Title Not Too Long</a></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam libero adipisci placeat velit ab harum magnam.</p>
+    {% end_widget_attribute %}
+{% end_widget_block %}
+
+</td></tr></table>
+
+
+   </td>
+           </tr>
+           <!-- 
+#############################
+col-100% - spacer
+ -->
+<tr><td align="center" valign="top" class="spacer" width="100%" height="{{ spacer_height }}" colspan="12"  bgcolor="{{ background_color }}">&nbsp;</td></tr>
+
+
+            <tr>
+<td valign="top"   width="45%" class=" column" style="width:45%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
+
+{% linked_image "article_image_5", label='Article Image 5' src='//dummyimage.com/265x150/000/fff', width='265' %}
+   </td>
+<td valign="top"  width="55%" class=" column" style="width:55%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
+
+
+<table cellspacing="0" cellpadding="" width="100%" class="text-padding"><tr><td valign="top">
+    
+
+{% widget_block rich_text "article_text_5" overrideable=True, label='Article Text 5'  %}
+    {% widget_attribute "html" %}
+            <h2><a href="#">An Engaging Title Not Too Long</a></h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam libero adipisci placeat velit ab harum magnam.</p>
+    {% end_widget_attribute %}
+{% end_widget_block %}
+
+</td></tr></table>
+
+
+   </td>
+           </tr>          
+    </table>
+   </td>
+</tr>
+<!-- 
+#############################
+grid end
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+#############################
+col-100% - spacer
+ -->
+<tr><td align="center" valign="top" class="bodyContent" width="100%" height="{{ spacer_height }}" colspan="12"  bgcolor="{{ background_color }}">
+    <hr />
+</td></tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+#############################
+
+col-2- 20/80
+coffee break
+
+#############################
+ -->
+<tr>
+<td align="center" valign="top" class="bodyContent" width="100%" colspan="12">
+<table cellpadding="0" cellspacing="0" border="0" width="100%" class="templateColumnWrapper">
+            <tr>
+<td valign="top"   width="12%" class=" column" style="width:12%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
+
+{% linked_image "footer_image", label='Footer Image' src='https://cdn2.hubspot.net/hubfs/47251/coffee-break.jpg', width='110' %}
+
+   </td>
+<td valign="top"  width="88%" class=" column" style="width:88%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
+
+
+<table cellspacing="0" cellpadding="" width="100%" class="text-padding"><tr><td valign="top">
+
+{% widget_block rich_text "footer_text" overrideable=True, label='Footer Links'  %}
+    {% widget_attribute "html" %}
+
+<p>
+<a href="">Link to Someplage</a>
+</p>
+<p>
+<a href="">Link to Someplage</a>
+</p>
+<p>
+<a href="">Link to Someplage</a>
+</p>
+
+    {% end_widget_attribute %}
+{% end_widget_block %}
+</td></tr></table>
+
+
+
+   </td>
+           </tr>
+    </table>
+   </td>
+</tr>
+<!-- 
+#############################
+grid end
+ -->
+
+
+
+
+<!-- 
+#############################
+col-100% - spacer
+ -->
+<tr><td align="center" valign="top" class="spacer" width="100%" height="{{ spacer_height }}" colspan="12"  bgcolor="{{ background_color }}">&nbsp;</td></tr>
 
 
 
@@ -656,104 +1135,67 @@ col-2- 50/50
 <td align="center" valign="top" class="bodyContent" width="100%" colspan="12">
 <table cellpadding="0" cellspacing="0" border="0" width="100%" class="templateColumnWrapper">
             <tr>
-<td valign="top" colspan=6 width="50.0%" class=" column" style="width:50.0%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
+<td valign="top" colspan=6 width="49.0%" class=" column" style="width:49.0%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
 
-<div class="widget-span widget-type-rich_text " style="" data-widget-type="rich_text">
-<div class="layout-widget-wrapper">
-{% rich_text "rich_text_50-50-1" %}
-</div><!--end layout-widget-wrapper -->
-</div><!--end widget-span -->
+
+<table cellspacing="0" cellpadding="" width="100%" class="text-padding"><tr><td valign="top">
+    
+
+{% widget_block rich_text "footer_text_2" overrideable=True, label='Footer Links 2'  %}
+    {% widget_attribute "html" %}
+
+<h3>Useful Links</h3>
+<p>
+<a href="">Link to Someplage</a>
+</p>
+<p>
+<a href="">Link to Someplage</a>
+</p>
+<p>
+<a href="">Link to Someplage</a>
+</p>
+
+    {% end_widget_attribute %}
+{% end_widget_block %}
+
+</td></tr></table>
+
+
    </td>
-<td valign="top" colspan=6 width="50.0%" class=" column" style="width:50.0%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
-
-<div class="widget-span widget-type-rich_text " style="" data-widget-type="rich_text">
-<div class="layout-widget-wrapper">
-{% rich_text "rich_text_50-50-2" %}
-</div><!--end layout-widget-wrapper -->
-</div><!--end widget-span -->
+<td valign="top" colspan=1 width="1%" class=" column"   bgcolor="{{ background_color }}">
+       &nbsp;
    </td>
-           </tr>
-    </table>
-   </td>
-</tr>
-<!-- 
-#############################
-grid end
-
- -->
+<td valign="top" colspan=6 width="49.0%" class=" column" style="width:49.0%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
 
 
 
 
 
 
+<table cellspacing="0" cellpadding="" width="100%" class="text-padding"><tr><td valign="top">
+    
 
+{% widget_block rich_text "footer_text_3" overrideable=True, label='Footer Links 3'  %}
+    {% widget_attribute "html" %}
 
-<!-- 
-#############################
+<h3>Events</h3>
+<p>
+<a href="">Link to Someplage</a>
+</p>
+<p>
+<a href="">Link to Someplage</a>
+</p>
+<p>
+<a href="">Link to Someplage</a>
+</p>
 
-col-2- 30/60
+    {% end_widget_attribute %}
+{% end_widget_block %}
 
-#############################
- -->
-<tr>
-<td align="center" valign="top" class="bodyContent" width="100%" colspan="12">
-<table cellpadding="0" cellspacing="0" border="0" width="100%" class="templateColumnWrapper">
-            <tr>
-<td valign="top" colspan=4 width="33.33333333333333%" class=" column" style="width:33.33333333333333%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
-
-<div class="widget-span widget-type-rich_text " style="" data-widget-type="rich_text">
-<div class="layout-widget-wrapper">
-{% rich_text "rich_text_30-60-1" %}
-</div><!--end layout-widget-wrapper -->
-</div><!--end widget-span -->
-   </td>
-<td valign="top" colspan=8 width="66.66666666666666%" class=" column" style="width:66.66666666666666%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
-
-<div class="widget-span widget-type-rich_text " style="" data-widget-type="rich_text">
-<div class="layout-widget-wrapper">
-{% rich_text "rich_text_30-60-2" %}
-</div><!--end layout-widget-wrapper -->
-</div><!--end widget-span -->
-   </td>
-           </tr>
-    </table>
-   </td>
-</tr>
-<!-- 
-#############################
-grid end
- -->
+</td></tr></table>
 
 
 
-
-<!-- 
-#############################
-
-col-2- 40/60
-
-#############################
- -->
-<tr>
-<td align="center" valign="top" class="bodyContent" width="100%" colspan="12">
-<table cellpadding="0" cellspacing="0" border="0" width="100%" class="templateColumnWrapper">
-            <tr>
-<td valign="top" colspan=5 width="41.66666666666667%" class=" column" style="width:41.66666666666667%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
-
-<div class="widget-span widget-type-rich_text " style="" data-widget-type="rich_text">
-<div class="layout-widget-wrapper">
-{% rich_text "rich_text_40-60-1" %}
-</div><!--end layout-widget-wrapper -->
-</div><!--end widget-span -->
-   </td>
-<td valign="top" colspan=7 width="58.333333333333336%" class=" column" style="width:58.333333333333336%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
-
-<div class="widget-span widget-type-rich_text " style="" data-widget-type="rich_text">
-<div class="layout-widget-wrapper">
-{% rich_text "rich_text_40-60-2" %}
-</div><!--end layout-widget-wrapper -->
-</div><!--end widget-span -->
    </td>
            </tr>
     </table>
@@ -762,46 +1204,7 @@ col-2- 40/60
 <!-- 
 #############################
 grid end
- -->
 
-
-
-
-
-<!-- 
-#############################
-
-col-2- 60/40
-
-#############################
- -->
-<tr>
-<td align="center" valign="top" class="bodyContent" width="100%" colspan="12">
-<table cellpadding="0" cellspacing="0" border="0" width="100%" class="templateColumnWrapper">
-            <tr>
-<td valign="top" colspan=7 width="58.333333333333336%" class=" column" style="width:58.333333333333336%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
-
-<div class="widget-span widget-type-rich_text " style="" data-widget-type="rich_text">
-<div class="layout-widget-wrapper">
-{% rich_text "rich_text_60-40-1" %}
-</div><!--end layout-widget-wrapper -->
-</div><!--end widget-span -->
-   </td>
-<td valign="top" colspan=5 width="41.66666666666667%" class=" column" style="width:41.66666666666667%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
-
-<div class="widget-span widget-type-rich_text " style="" data-widget-type="rich_text">
-<div class="layout-widget-wrapper">
-{% rich_text "rich_text_60-40-2" %}
-</div><!--end layout-widget-wrapper -->
-</div><!--end widget-span -->
-   </td>
-           </tr>
-    </table>
-   </td>
-</tr>
-<!-- 
-#############################
-grid end
  -->
 
 
@@ -809,90 +1212,19 @@ grid end
 
 
 
-<!-- 
-#############################
-
-col-2 60/30
-
-#############################
- -->
-<tr>
-<td align="center" valign="top" class="bodyContent" width="100%" colspan="12">
-<table cellpadding="0" cellspacing="0" border="0" width="100%" class="templateColumnWrapper">
-            <tr>
-<td valign="top" colspan=8 width="66.66666666666666%" class=" column" style="width:66.66666666666666%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
-
-<div class="widget-span widget-type-rich_text " style="" data-widget-type="rich_text">
-<div class="layout-widget-wrapper">
-{% rich_text "rich_text_60-30-1" %}
-</div><!--end layout-widget-wrapper -->
-</div><!--end widget-span -->
-   </td>
-<td valign="top" colspan=4 width="33.33333333333333%" class=" column" style="width:33.33333333333333%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
-
-<div class="widget-span widget-type-rich_text " style="" data-widget-type="rich_text">
-<div class="layout-widget-wrapper">
-{% rich_text "rich_text_60-30-2" %}
-</div><!--end layout-widget-wrapper -->
-</div><!--end widget-span -->
-   </td>
-           </tr>
-    </table>
-   </td>
-</tr>
-<!-- 
-#############################
-grid end
- -->
 
 
 
 
 
-<!-- 
-#############################
 
-3 columns
 
-#############################
- -->
 
-<tr>
-<td align="center" valign="top" class="bodyContent" width="100%" colspan="12">
-<table cellpadding="0" cellspacing="0" border="0" width="100%" class="templateColumnWrapper">
-            <tr>
-<td valign="top" colspan=4 width="33.33333333333333%" class=" column" style="width:33.33333333333333%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
 
-<div class="widget-span widget-type-rich_text " style="" data-widget-type="rich_text">
-<div class="layout-widget-wrapper">
-{% rich_text "rich_text_30-30-30-1" %}
-</div><!--end layout-widget-wrapper -->
-</div><!--end widget-span -->
-   </td>
-<td valign="top" colspan=4 width="33.33333333333333%" class=" column" style="width:33.33333333333333%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
 
-<div class="widget-span widget-type-rich_text " style="" data-widget-type="rich_text">
-<div class="layout-widget-wrapper">
-{% rich_text "rich_text_30-30-30-2" %}
-</div><!--end layout-widget-wrapper -->
-</div><!--end widget-span -->
-   </td>
-<td valign="top" colspan=4 width="33.33333333333333%" class=" column" style="width:33.33333333333333%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
 
-<div class="widget-span widget-type-rich_text " style="" data-widget-type="rich_text">
-<div class="layout-widget-wrapper">
-{% rich_text "rich_text_30-30-30-3" %}
-</div><!--end layout-widget-wrapper -->
-</div><!--end widget-span -->
-   </td>
-           </tr>
-    </table>
-   </td>
-</tr>
-<!-- 
-#############################
-grid end
- -->
+
+
 
 
 
@@ -919,26 +1251,29 @@ grid end
 <td align="center" valign="top" class="bodyContent" width="100%" colspan="12">
 <table cellpadding="0" cellspacing="0" border="0" width="100%" class="templateColumnWrapper">
             <tr>
-<td valign="top" colspan=12 width="100.0%" class=" column" style="width:100.0%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: 1.5em; color: {{ primary_font_color }}; ">
+<td valign="top" colspan=12 width="60%" class=" column" style="width:60%; text-align: left; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
 
 <div class="widget-span widget-type-email_can_spam " style="" data-widget-type="email_can_spam">
-<p id="footer" style="font-family: Geneva, Verdana, Arial, Helvetica, sans-serif; text-align: center; font-size: 12px; line-height: 1.34em; color: {{ secondary_font_color }}; display: block">
-<input class="hubspot-mergetag" type="button" value="Name" data-canspam="{{ site_settings.company_name }}">
 
-&nbsp;&nbsp;<input class="hubspot-mergetag" type="button" value="Address 1" data-canspam="{{ site_settings.company_street_address_1 }}">
 
-&nbsp;<input class="hubspot-mergetag" type="button" value="Address 2" data-canspam="{{ site_settings.company_street_address_2 }}">
+<p id="footer" style="font-family: Geneva, Verdana, Arial, Helvetica, sans-serif; text-align: left; font-size: 12px; line-height: 1.34em; color: {{ secondary_font_color }}; display: block">
 
-&nbsp;<input class="hubspot-mergetag" type="button" value="City" data-canspam="{{ site_settings.company_city }}">
+<input class="hubspot-mergetag" type="button" value="Name" data-canspam="{{ site_settings.company_name }}"><br />
 
-&nbsp;<input class="hubspot-mergetag" type="button" value="State" data-canspam="{{ site_settings.company_state }}">
+<input class="hubspot-mergetag" type="button" value="Address 1" data-canspam="{{ site_settings.company_street_address_1 }}">&nbsp;
 
-&nbsp;&nbsp;<input class="hubspot-mergetag" type="button" value="Zip" data-canspam="{{ site_settings.company_zip }}">
+<input class="hubspot-mergetag" type="button" value="Address 2" data-canspam="{{ site_settings.company_street_address_2 }}"><br />
 
-&nbsp;&nbsp;<input class="hubspot-mergetag" type="button" value="Country" data-canspam="{{ site_settings.company_country }}">
+<input class="hubspot-mergetag" type="button" value="City" data-canspam="{{ site_settings.company_city }}">,&nbsp;
+
+<input class="hubspot-mergetag" type="button" value="State" data-canspam="{{ site_settings.company_state }}">&nbsp;
+
+<input class="hubspot-mergetag" type="button" value="Zip" data-canspam="{{ site_settings.company_zip }}">&nbsp;
+
+<input class="hubspot-mergetag" type="button" value="Country" data-canspam="{{ site_settings.company_country }}">
 
 <br/><br/>
-You received this email because you are subscribed to <input class="hubspot-mergetag" type="button" value="Email Type" data-canspam="{{ subscription_name }}">
+You are subscribed to <input class="hubspot-mergetag" type="button" value="Email Type" data-canspam="{{ subscription_name }}">
  from <input class="hubspot-mergetag" type="button" value="Name" data-canspam="{{ site_settings.company_name }}">
 .
 <br/><br/>
@@ -953,6 +1288,21 @@ Update your <a class="hubspot-mergetag" data-unsubscribe="true" href="{{ unsubsc
 
 </div><!--end widget-span -->
    </td>
+
+<td valign="top" colspan=12 width="40%" class=" column" style="width:40%; text-align: right; padding: 0; font-family: {{ primary_font }}; font-size: {{ primary_font_size }}; line-height: {{ primary_font_lheight }}em; color: {{ primary_font_color }}; ">
+
+
+<p style="font-family: Geneva, Verdana, Arial, Helvetica, sans-serif; text-align: right; font-size: 12px; line-height: 1.34em; color: {{ secondary_font_color }}; display: block">
+{% raw_html "module_14495134452997441" overrideable=True, value='<div id="socialShareLinks">\n <a href="https://www.facebook.com/HyperWorks" target="_blank"  width="32"><img src="http://cdn2.hubspot.net/hubfs/47251/toggled-email/facebook.png" width="32" hspace="0" alt="Share on Facebook" class="hs-image-widget "></a>&emsp;<a href="https://twitter.com/HyperWorks" target="_blank"  width="32"><img src="http://cdn2.hubspot.net/hubfs/47251/toggled-email/twitter.png" width="32" hspace="0" alt="Share on Twitter" class="hs-image-widget "></a>&emsp;<a href="https://www.linkedin.com/showcase/5060499?pathWildcard=5060499" target="_blank"  width="32"><img src="http://cdn2.hubspot.net/hubfs/47251/toggled-email/linkedin.png" width="32" hspace="0" alt="Share on LinkedIn" class="hs-image-widget "></a>&emsp;<a href="https://www.youtube.com/user/InnovationSimulation" target="_blank"  width="32"><img src="http://cdn2.hubspot.net/hubfs/47251/toggled-email/youtube.png" width="32" hspace="0" alt="Share on YouTube" class="hs-image-widget "></a>\n\n\n\n</div>', label='Follow Us' %}            </div><!--end widget-span -->
+
+
+
+</p>
+
+</td>
+
+
+
            </tr>
     </table>
    </td>
